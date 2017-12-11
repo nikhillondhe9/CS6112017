@@ -4,7 +4,7 @@ def print_list(list):
         print(elements)
 
 
-L = [1,2,3,"four","five","list elements"]
+L = [1, 2, 3, "four", "five", "list elements"]
 print_list(L)
 
 

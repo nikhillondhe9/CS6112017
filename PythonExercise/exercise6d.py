@@ -1,21 +1,15 @@
-# find first n prime numbers
-def find_prime(n):
+def find_n_primes(N):
     prime_list = []
-    prime_found = 0
-    x = n
-    while prime_found < n:
-         for x in range(2, n):
-            if n == 2:
-                 prime_list.append(n)
-                 prime_found += 1
-            elif n % x == 0:
-                pass
-            else:
-                prime_list.append(x)
-                prime_found += 1
-         x -= 1
+    n = 2
+    while len(prime_list) < N:
+        prime_test = []
+        for i in prime_list:
+            if n % i == 0:
+                prime_test.append(i)
+
+        prime_list += [] if prime_test else [n]
+        n += 1
     return prime_list
 
 
-
-print(find_prime(10))
+print(find_n_primes(10))

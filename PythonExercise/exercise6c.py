@@ -1,21 +1,21 @@
 # return prime up to n
-def prime_upto(n):
+def find_upto_nprimes(N):
     prime_list = []
-    i = 2
-    while i <= n:
-        if i == 2:
-            prime_list.append(i)
-        else:
-            for x in range(2, i):
-                if i % x == 0:
-                    pass
-                else:
-                    prime_list.append(x)
-        i = i + 1
+    n = 2
+    c = 0
+    while c < N - 1:
+        prime_test = []
+        for i in prime_list:
+            if n % i == 0:
+                prime_test.append(i)
+
+        prime_list += [] if prime_test else [n]
+        n += 1
+        c += 1
     return prime_list
 
 
-print(prime_upto(10))
+print(find_upto_nprimes(10))
 
 
 
