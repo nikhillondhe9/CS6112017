@@ -69,19 +69,20 @@ public class TokenStream {
 		}
 
 
-        // Rewriting this part completely because three letter operators were recognized
-        // as valid, when in fact they're not part of the language.
-        if (isOperator(nextChar)) {
-            t.setType("Operator");
-            while(!isEndOfLine(nextChar) && isOperator(nextChar)) {
-                t.setValue(t.getValue() + nextChar);
-                nextChar = readChar();
-            }
-            if(!isValidOperator(t.getValue())) {
-                t.setType("Other");
-            }
-            return t;
-        }
+		skipWhiteSpace();
+		// Then check for an operator; recover 2-character operators
+		// as well as 1-character ones.
+		if (isOperator(nextChar)) {
+				t.setType("Operator");
+				while(!isEndOfLine(nextChar) && isOperator(nextChar)) {
+						t.setValue(t.getValue() + nextChar);
+						nextChar = readChar();
+				}
+				if(!isValidOperator(t.getValue())) {
+						t.setType("Other");
+				}
+				return t;
+		}
 
 		// Then check for a separator.
 		if (isSeparator(nextChar)) {
@@ -120,7 +121,7 @@ public class TokenStream {
             }
             // An Integer-Literal is to be only followed by a space,
 			// an operator, or a separator.
-			//if (isEndOfToken(nextChar)) // If token is valid, returns.
+			if (isEndOfToken(nextChar))
             return t;
 		}
 
